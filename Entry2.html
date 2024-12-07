@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emotion Mapping Project</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      /* background: linear-gradient(to right, #e6f7ff, #ffffff); */
+      background: url('./20241203195806.jpg');
+      color: #333;
+    }
+
+    .emotion-map {
+      margin: 40px auto;
+      text-align: center;
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .emotion-map iframe {
+      width: 100%;
+      height: 450px;
+      border-radius: 10px;
+      border: none;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px 0;
+      background: url('./20241203195807.jpg');
+      /* background-color: #4caf50; */
+      color: #000;
+      border-radius: 10px 10px 0 0;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    nav {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    nav a {
+      color: #4caf50;
+      text-decoration: none;
+      font-size: 1.2em;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+
+    nav a.active {
+      font-weight: bold;
+      border-bottom: 2px solid #4caf50;
+    }
+
+    nav a:hover {
+      color: #388e3c;
+    }
+
+    section {
+      margin-bottom: 30px;
+    }
+
+    section h2 {
+      font-size: 1.8em;
+      color: #4caf50;
+      margin-bottom: 15px;
+    }
+
+    section p {
+      margin: 10px 0;
+      background-color: rgba(240, 240, 240, 0.8);
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    .overview img {
+      width: 100%;
+      border-radius: 10px;
+      margin: 15px 0;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .categories ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .categories ul li {
+      background: #4caf50;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      border-radius: 10px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .categories ul li:hover {
+      transform: scale(1.1);
+      background: #388e3c;
+    }
+
+    .inspiration blockquote {
+      font-style: italic;
+      border-left: 4px solid #4caf50;
+      padding-left: 15px;
+      color: #666;
+      margin: 15px 0;
+    }
+
+    .form-container {
+      margin-top: 20px;
+      background-color: rgba(240, 240, 240, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .form-container input,
+    .form-container textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-container button {
+      width: 100%;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-container button:hover {
+      background-color: #388e3c;
+    }
+
+    .entries-container {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+    }
+
+    .entries-container h3 {
+      margin-top: 0;
+      color: #4caf50;
+    }
+
+    .entries-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .entries-list li {
+      padding: 10px;
+      background: rgba(240, 240, 240, 0.8);
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    .counter {
+      font-weight: bold;
+      color: #4caf50;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      font-size: 1.2em;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-to-top:hover {
+      background-color: #388e3c;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Emotion Mapping Project</h1>
+      <p>Exploring the connection between locations and emotions</p>
+    </header>
+
+    <nav>
+      <a href="#overview" class="active">Overview</a>
+      <a href="#categories">Categories</a>
+      <a href="#inspiration">Inspiration</a>
+      <a href="#form">Share Your Emotion</a>
+      <a href="main.html">Go to Home Page</a>
+    </nav>
+
+    <section id="overview" class="overview">
+      <h2>Overview</h2>
+      <p>
+        This project aims to explore the connection between emotions and geography in our daily lives.
+        By mapping emotional responses to specific places, we can visually represent these feelings
+        and provide insights into the human psyche.
+      </p>
+      <section class="emotion-map">
+        <h2>Explore the Emotion Map</h2>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.9353002065036!2d-74.01331948423898!3d40.71280517933033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9c9c953be858d82c!2sOne%20World%20Trade%20Center!5e0!3m2!1sen!2sus!4v1633379257779!5m2!1sen!2sus"></iframe>
+      </section>
+    </section>
+
+    <section id="categories" class="categories">
+      <h2>Categories</h2>
+      <ul>
+        <li style="background: #388e3c;">Restaurant</li>
+        <li style="background: salmon;">Nature</li>
+        <li style="background: darkgray;">Café</li>
+        <li style="background: darkorange;">Dessert Shop</li>
+        <li style="background: darkkhaki;">Museum</li>
+        <li style="background: palevioletred;">Park</li>
+      </ul>
+    </section>
+
+    <section id="inspiration" class="inspiration">
+      <h2>Inspiration</h2>
+      <blockquote>
+        "I was inspired by Google Maps, marking my favorite restaurants with green pins. These marks
+        are not just geographic records, but a source of emotional satisfaction."
+      </blockquote>
+    </section>
+
+    <section id="form">
+      <h2>Share Your Emotion</h2>
+      <div class="form-container">
+        <form id="emotionForm">
+          <input type="text" id="location" placeholder="Enter a location" required />
+          <textarea id="emotion" rows="5" placeholder="Share your emotion" required></textarea>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="entries-container">
+        <h3>Submission Records</h3>
+        <p>Total Entries: <span id="entryCounter" class="counter">0</span></p>
+        <ul id="entriesList" class="entries-list"></ul>
+      </div>
+    </section>
+
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+  </div>
+
+  <script>
+    // Form submission event
+    document.getElementById("emotionForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const location = document.getElementById("location").value;
+      const emotion = document.getElementById("emotion").value;
+
+      if (location && emotion) {
+        const entries = JSON.parse(localStorage.getItem("emotionEntries")) || [];
+        entries.push({ location, emotion });
+        localStorage.setItem("emotionEntries", JSON.stringify(entries));
+        document.getElementById("emotionForm").reset();
+        displayEntries();
+      }
+    });
+
+    function displayEntries() {
+      const entriesList = document.getElementById("entriesList");
+      const entries = JSON.parse(localStorage.getItem("emotionEntries")) || [];
+      const entryCounter = document.getElementById("entryCounter");
+
+      entriesList.innerHTML = "";
+      entryCounter.textContent = entries.length;
+
+      entries.forEach((entry, index) => {
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `<strong>${index + 1}. Location:</strong> ${entry.location} <br><strong>Emotion:</strong> ${entry.emotion}`;
+        entriesList.appendChild(listItem);
+      });
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Initialize entries on page load
+    document.addEventListener("DOMContentLoaded", displayEntries);
+  </script>
+</body>
+
+</html>
